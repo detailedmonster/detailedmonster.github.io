@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>Vitu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="WELCOME TO MY BLOG">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Vitu">
 <meta property="og:url" content="http://example.com/2022/01/20/#C%E8%AF%AD%E8%A8%80%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Vitu">
 <meta property="og:description" content="WELCOME TO MY BLOG">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-20T07:54:56.315Z">
@@ -21,7 +21,7 @@
 <meta property="article:tag" content="不会再放弃">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Vitu" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -81,6 +81,41 @@
 			</div>
 		</nav>
 	</header>		
+</div>
+<!--时钟-->
+<br>
+<div style="position:absolute; bottom:120px left:auto; width:100%;height:50%">
+	<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  	<div id="clock" style="font-family: 'Share Tech Mono', monospace;color: #ffffff;text-align: center;position: absolute;left: 50%;top: 50%;-webkit-transform: translate(50%, 50%);transform: translate(-50%, -50%);color: #4B8CE1;text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);">
+      		<p style="margin: 0;padding: 0;letter-spacing: 0.1em;font-size: 15px;">{{ date }}</p>
+      		<p style="margin: 0;padding: 0;letter-spacing: 0.01em;font-size: 38px;">{{ time }}</p>
+  	</div>
+	<script>
+		var clock = new Vue({
+			el: '#clock',
+			data: {
+				time: '',
+				date: ''
+			}
+		});
+
+		var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+		var timerID = setInterval(updateTime, 1000);
+		updateTime();
+		function updateTime() {
+			var cd = new Date();
+			clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+			clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + week[cd.getDay()];
+		};
+
+		function zeroPadding(num, digit) {
+			var zero = '';
+			for (var i = 0; i < digit; i++) {
+				zero += '0';
+			}
+			return (zero + num).slice(-digit);
+		}
+	</script>
 </div>
 
     </div>
@@ -156,6 +191,11 @@
                   <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
